@@ -6,13 +6,34 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>login</ion-title>
+  <ion-navbar color="ct-primary">
+    <ion-title>Login - Tire Control</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<form (ngSubmit)="login()" #registerForm="ngForm">
+<ion-list padding>
+  <ion-item class="radius20">
+    <!--<ion-label stacked>Usuário</ion-label>-->
+    <ion-input type="text" [(ngModel)]="user.user" placeholder="Usuário" name="user" full required></ion-input>
+   
+  </ion-item>
+  <div class="marginSpace"></div>
+  <ion-item class="radius20">
+    <!--<ion-label stacked>Senha</ion-label>-->
+    <ion-input type="password" [(ngModel)]="user.pass" placeholder="Senha" name="pass" full required></ion-input>
+  </ion-item>
 
+</ion-list>
+<div>
+  <button ion-button color="primary" class="submit-btn" type="submit" block full [disabled]="!registerForm.form.valid">Login</button>
+</div>
+<div class="marginSpace"></div>
+<div>
+  <button ion-button color="primary" class="submit-btn" type="button" block full (click)="goToRegister()">Sign Up</button>
+</div>
+</form>
 </ion-content>

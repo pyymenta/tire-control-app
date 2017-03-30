@@ -6,13 +6,47 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>sign-up</ion-title>
+  <ion-navbar  color="ct-primary">
+    <ion-title>Sign Up</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<form (ngSubmit)="register()" #registerForm="ngForm">
+<ion-list padding>
+  <ion-item class="radius20">
+    <!--<ion-label stacked>Usuário</ion-label>-->
+    <ion-input type="text" [(ngModel)]="user.user" placeholder="Usuário" name="user" full required></ion-input>
+   
+  </ion-item>
+  <div class="marginSpace"></div>
+    <ion-item class="radius20">
+    <!--<ion-label stacked>Usuário</ion-label>-->
+    <ion-input type="text" [(ngModel)]="user.name" placeholder="Nome Completo" name="nome" full required></ion-input>
+   
+  </ion-item>
+  <div class="marginSpace"></div>
+    <ion-item class="radius20">
+    <!--<ion-label stacked>Usuário</ion-label>-->
+    <ion-input type="email" [(ngModel)]="user.email" placeholder="xxx@yyy.xyz" name="email" full required></ion-input>
+   
+  </ion-item>
+  <div class="marginSpace"></div>
+  <ion-item class="radius20">
+    <!--<ion-label stacked>Senha</ion-label>-->
+    <ion-input type="password" [(ngModel)]="user.pass" placeholder="Senha" name="pass" full required></ion-input>
+  </ion-item>
+  <div class="marginSpace"></div> 
+  <ion-item class="radius20">
+    <!--<ion-label stacked>Senha</ion-label>-->
+    <ion-input type="password" [(ngModel)]="confirmPass" placeholder="Confirme a Senha" name="confirmpass" full required></ion-input>
+  </ion-item>
 
+</ion-list>
+<div>
+  <button ion-button color="primary" class="submit-btn" type="submit" block full [disabled]="!registerForm.form.valid || user.pass !== confirmPass">Registrar</button>
+</div>
+</form>
 </ion-content>

@@ -1,3 +1,30 @@
 page-sign-up {
-
+    ion-item {
+         font-size: 1em;
+         margin-bottom: 20px;
+         box-shadow: none !important;
+     }
+     .radius20{
+         border-radius: 20px;
+     }
+     .radius30{
+         border-radius: 30px;
+     } 
+     .marginSpace{
+         margin: 20px;
+     }
+    .submit-btn {
+       background: map-get($colors , "ct-primary" );
+       border-radius: 30px !important;
+       //border: 1px solid map-get($colors , "dark" );
+     }
+     .list-ios > .item-block:first-child{
+         border-top: none;
+     }
+     .content, ion-item{
+         background-color: map-get($colors , "ct-background" );
+     }
+     .scroll-content{
+        overflow-y: hidden;
+     }
 }
