@@ -8,6 +8,8 @@ import { SignUpPage } from '../pages/sign-up/sign-up';
 // End Import Pages
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+//Import Services
+import { AuthService } from '../providers/auth-service';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   providers: [
     StatusBar,
     SplashScreen,
+    AuthService,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
