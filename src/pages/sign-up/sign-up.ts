@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams,AlertController } from 'ionic-angular';
 import { User } from '../../models/User';
 import { SignupService } from '../../providers/signup-service';
 /*
@@ -15,13 +15,27 @@ import { SignupService } from '../../providers/signup-service';
 })
 export class SignUpPage {
   user : User = new User(null,null);
+  errors: any; 
   confirmPass : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public signupService: SignupService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public signupService: SignupService, public alertCtrl: AlertController) {}
 
   signUp(){
     Promise.resolve(this.signupService.signUp(this.user))
-    .then(res => console.log("info: ",res))
-    .catch(res => console.log("error: ",res));
+    .then(res => this.redirectLogin(res))
+    .catch(res => console.log(res));
+  }
+
+  private redirectLogin(res){
+    if(res.errors){
+      this.errors = res.errors;
+    }else{
+        this.alertCtrl.create({
+          title: 'Sign Up',
+          subTitle: 'The user has been successfully created! Please Log in!',
+          buttons: ['OK']
+        }).present();
+        this.navCtrl.pop();
+    }
   }
 
 }

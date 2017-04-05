@@ -21,23 +21,27 @@
     <ion-input type="text" [(ngModel)]="user.user" placeholder="Usuário" name="user" full required></ion-input>
    
   </ion-item>
+  <span style="color: red; margin:1em;" *ngIf="errors?.username">{{errors.username[0]}}</span>
   <div class="marginSpace"></div>
     <ion-item class="radius20">
     <!--<ion-label stacked>Usuário</ion-label>-->
     <ion-input type="text" [(ngModel)]="user.fullname" placeholder="Nome Completo" name="nome" full required></ion-input>
    
   </ion-item>
+  <span style="color: red; margin:1em;" *ngIf="errors?.name">{{errors.name[0]}}</span>
   <div class="marginSpace"></div>
     <ion-item class="radius20">
     <!--<ion-label stacked>Usuário</ion-label>-->
     <ion-input type="email" [(ngModel)]="user.email" placeholder="xxx@yyy.xyz" name="email" full required></ion-input>
    
   </ion-item>
+  <span style="color: red; margin:1em;" *ngIf="errors?.email">{{errors.email[0]}}</span>
   <div class="marginSpace"></div>
   <ion-item class="radius20">
     <!--<ion-label stacked>Senha</ion-label>-->
     <ion-input type="password" [(ngModel)]="user.pass" placeholder="Senha" name="pass" full required></ion-input>
   </ion-item>
+  <span style="color: red; margin:1em;" *ngIf="errors?.passwd">{{errors.passwd[0]}}</span>
   <div class="marginSpace"></div> 
   <ion-item class="radius20">
     <!--<ion-label stacked>Senha</ion-label>-->
