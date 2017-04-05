@@ -17,8 +17,7 @@ export class AuthService {
     
   }
   login(u: User): any{
-    console.log(u);
-      return this.http.post(this.url+'/login','email='+u.email+'&passwd='+u.pass,{headers: this.headers})
+       return this.http.post(this.url+'/login','email='+u.email+'&passwd='+u.pass,{headers: this.headers})
       .toPromise()
       .then(res => res.json())
       .catch(error => error.json());

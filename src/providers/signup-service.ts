@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { User } from '../models/User'
 
 /*
   Generated class for the SignupService provider.
@@ -10,9 +11,13 @@ import 'rxjs/add/operator/map';
 */
 @Injectable()
 export class SignupService {
-
-  constructor(public http: Http) {
-    console.log('Hello SignupService Provider');
+  private url = 'http://localhost:8080';
+  private headers = new Headers({'Content-Type': 'application/x-www-form-urlencoded'});
+  constructor(public http: Http) {}
+  signUp(u: User): any{
+      return this.http.post(this.url+'/signup','name='+u.fullname+'&username='+u.user+'&email='+u.email+'&passwd='+u.pass,{headers: this.headers})
+      .toPromise()
+      .then(res => res.json())
+      .catch(error => error.json());
   }
-
 }

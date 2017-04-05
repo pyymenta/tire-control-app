@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/User';
+import { SignupService } from '../../providers/signup-service';
 /*
   Generated class for the SignUp page.
 
@@ -9,15 +10,18 @@ import { User } from '../../models/User';
 */
 @Component({
   selector: 'page-sign-up',
-  templateUrl: 'sign-up.html'
+  templateUrl: 'sign-up.html',
+  providers: [SignupService]
 })
 export class SignUpPage {
   user : User = new User(null,null);
   confirmPass : string;
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public signupService: SignupService) {}
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SignUpPage');
+  signUp(){
+    Promise.resolve(this.signupService.signUp(this.user))
+    .then(res => console.log("info: ",res))
+    .catch(res => console.log("error: ",res));
   }
 
 }

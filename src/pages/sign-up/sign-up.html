@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-<form (ngSubmit)="register()" #registerForm="ngForm">
+<form (ngSubmit)="signUp()" #registerForm="ngForm">
 <ion-list padding>
   <ion-item class="radius20">
     <!--<ion-label stacked>Usuário</ion-label>-->
@@ -24,7 +24,7 @@
   <div class="marginSpace"></div>
     <ion-item class="radius20">
     <!--<ion-label stacked>Usuário</ion-label>-->
-    <ion-input type="text" [(ngModel)]="user.name" placeholder="Nome Completo" name="nome" full required></ion-input>
+    <ion-input type="text" [(ngModel)]="user.fullname" placeholder="Nome Completo" name="nome" full required></ion-input>
    
   </ion-item>
   <div class="marginSpace"></div>
