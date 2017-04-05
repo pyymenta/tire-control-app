@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 import { User } from '../../models/User';
 import { SignUpPage } from '../sign-up/sign-up';
 import { AuthService } from '../../providers/auth-service'
@@ -16,7 +16,7 @@ import { AuthService } from '../../providers/auth-service'
 })
 export class LoginPage {
   user : User = new User(null,null);
-  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService) {}
+  constructor(public navCtrl: NavController, public navParams: NavParams, public authService: AuthService, public alertCtrl: AlertController ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LoginPage');
@@ -24,8 +24,24 @@ export class LoginPage {
 
   login(){
     Promise.resolve(this.authService.login(this.user))
-    .then(data => console.log(data))
+    .then(res => this.redirectHome(res))
     .catch(error => console.log(error));
+  }
+
+  private redirectHome(userAuthData: any){
+    let subtitle: string;
+    if(!userAuthData.error){
+      this.authService.saveSession(userAuthData);
+      subtitle = `Autenticado com Sucesso!<br />
+                    Olá, `+userAuthData.user_name;
+    }else{
+      subtitle = userAuthData.error;
+    }
+    this.alertCtrl.create({
+        title: 'Login',
+        subTitle: subtitle,
+        buttons: ['OK']
+    }).present();
   }
 
   goToRegister(){

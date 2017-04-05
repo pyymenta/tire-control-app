@@ -23,15 +23,11 @@ export class AuthService {
       .then(res => res.json())
       .catch(error => error.json());
   }
-  
-  private handleError(error: any): Promise<any> {
-      console.error('An error occurred', error); 
-      // return Promise.reject(error.message || error);
-      return error;
+  saveSession(session: any){
+      localStorage.setItem('userAuthData',JSON.stringify(session));
   }
- private getResource(res: any): any{
-    //return Promise.resolve(res);
-    return res;
+  getSession(){
+    return JSON.parse(localStorage.getItem('userAuthData'));
   }
 
 }
