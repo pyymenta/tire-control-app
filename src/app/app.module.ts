@@ -13,13 +13,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 //Import Services
 import { AuthService } from '../providers/auth-service';
 import { SignupService } from '../providers/signup-service';
+//Import Own entryComponents
+import { PopoverHome } from '../pages/home/popover.component';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginPage,
-    SignUpPage
+    SignUpPage,
+    PopoverHome
   ],
   imports: [
     BrowserModule,
@@ -31,7 +34,8 @@ import { SignupService } from '../providers/signup-service';
     MyApp,
     HomePage,
     LoginPage,
-    SignUpPage
+    SignUpPage,
+    PopoverHome
   ],
   providers: [
     StatusBar,

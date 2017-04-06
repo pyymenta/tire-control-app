@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Http, Headers,RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { User } from '../models/User';
@@ -27,6 +27,18 @@ export class AuthService {
   }
   getSession(){
     return JSON.parse(localStorage.getItem('userAuthData'));
+  }
+  private destroySession(){
+    localStorage.removeItem('userAuthData');
+  }
+  logout(): any{
+      let token = this.getSession().token;
+      let logoutHeaders = this.headers;
+      logoutHeaders.set('token', token);
+      let options = new RequestOptions({headers:logoutHeaders});
+      return this.http.put(this.url+'/logout',options ).toPromise()
+      .then(res => this.destroySession());
+      
   }
 
 }
