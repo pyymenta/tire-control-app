@@ -34,9 +34,9 @@ export class AuthService {
   logout(): any{
       let token = this.getSession().token;
       let logoutHeaders = this.headers;
-      logoutHeaders.set('token', token);
+      logoutHeaders.append('token', token);
       let options = new RequestOptions({headers:logoutHeaders});
-      return this.http.put(this.url+'/logout',options ).toPromise()
+      return this.http.put(this.url+'/logout',{},options ).toPromise()
       .then(res => this.destroySession());
       
   }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ViewController, NavController, AlertController } from 'ionic-angular';
+import { ViewController, NavController, AlertController, App } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service';
 import { LoginPage } from '../../pages/login/login';
 @Component({
@@ -7,7 +7,7 @@ import { LoginPage } from '../../pages/login/login';
 })
 export class PopoverHome {
   constructor(public viewCtrl: ViewController, public navCtrl: NavController, public authService: AuthService,
-  public alertCtrl: AlertController) {}
+  public alertCtrl: AlertController, public app: App) {}
 
   close() {
     this.viewCtrl.dismiss();
@@ -43,7 +43,7 @@ export class PopoverHome {
         subTitle: 'Deslogado com Sucesso!',
         buttons: ['OK']
       }).present();
-      this.navCtrl.setRoot(LoginPage); 
+      this.app.getRootNav().setRoot(LoginPage);
     });
   }
 }
