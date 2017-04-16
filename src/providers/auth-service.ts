@@ -33,12 +33,12 @@ export class AuthService {
   }
   logout(): any{
       let token = this.getSession().token;
-      let logoutHeaders = this.headers;
-      logoutHeaders.append('token', token);
+      let logoutHeaders = new Headers();
+      logoutHeaders.append('token', token)
+      logoutHeaders.append('Content-Type', 'application/json');
       let options = new RequestOptions({headers:logoutHeaders});
       return this.http.put(this.url+'/logout',{},options ).toPromise()
-      .then(res => this.destroySession());
-      
+      .then(res => this.destroySession());  
   }
 
 }
